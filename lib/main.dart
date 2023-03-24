@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const StartScreen(),
+      home:
+          // const QuizScreen(),
+          const StartScreen(),
     );
   }
 }
