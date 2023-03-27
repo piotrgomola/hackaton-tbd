@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   rive: ^0.10.3
   gradient_borders: ^1.0.0
+  flame: ^1.6.0
+  flame_tiled: ^1.9.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -56,6 +58,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
+    - assets/images/
+    - assets/tiles/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

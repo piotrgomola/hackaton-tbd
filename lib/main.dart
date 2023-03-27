@@ -1,7 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:hackaton_tbd/quiz_screen.dart';
+import 'package:hackaton_tbd/game_screen.dart';
+import 'package:hackaton_tbd/input_name_screen.dart';
+import 'package:hackaton_tbd/screen_selector.dart';
 import 'package:hackaton_tbd/startScreen.dart';
 
 void main() {
@@ -42,15 +42,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool showQuiz = false;
+  ScreenSelector? selectedScreen;
 
   @override
   void initState() {
-    Timer(
-      const Duration(seconds: 3),
-      () => setState(() {
-        showQuiz = true;
-      }),
-    );
     super.initState();
   }
 
@@ -59,18 +54,25 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       home: Navigator(
         pages: [
-          const MaterialPage(
-            key: ValueKey('startScreen'),
-            child: StartScreen(),
+          MaterialPage(
+            key: const ValueKey('startScreen'),
+            child: StartScreen(onScreenChange: _handleChangeScreen),
           ),
-          if (showQuiz)
-            const MaterialPage(
-              key: ValueKey('quizScreen'),
-              child: QuizScreen(),
+          if (selectedScreen == ScreenSelector.inputName)
+            MaterialPage(
+              key: const ValueKey('inputNameScreen'),
+              child: InputNameScreen(onScreenChange: _handleChangeScreen),
+            ),
+          if (selectedScreen == ScreenSelector.game)
+            MaterialPage(
+              key: const ValueKey('quizScreen'),
+              child: GameScreen(onScreenChange: _handleChangeScreen),
             ),
         ],
         onPopPage: (route, result) => route.didPop(result),
       ),
     );
   }
+
+  void _handleChangeScreen(ScreenSelector newScreen) => setState(() => selectedScreen = newScreen);
 }

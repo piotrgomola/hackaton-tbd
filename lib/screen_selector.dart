@@ -1,0 +1,4 @@
+enum ScreenSelector {
+  inputName,
+  game,
+}
